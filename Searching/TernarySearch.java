@@ -1,7 +1,7 @@
 // Java program to illustrate 
 // recursive approach to ternary search 
 
-class 2_TernarySearch {
+class TernarySearch {
 
  // Function to perform Ternary Search 
  static int ternarySearch(int l, int r, int key, int ar[]) {
