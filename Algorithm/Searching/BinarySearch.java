@@ -45,3 +45,5 @@ class BinarySearch {
     "index " + result);
  }
 }
+
+//O(log2N).

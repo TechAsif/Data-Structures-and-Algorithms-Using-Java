@@ -69,3 +69,5 @@ public class MyMergeSort {
   }
  }
 }
+
+/* time complexity O(n log n)*/

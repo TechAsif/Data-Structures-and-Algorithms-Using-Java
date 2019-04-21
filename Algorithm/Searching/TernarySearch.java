@@ -91,3 +91,5 @@ class TernarySearch {
   System.out.println("Index of " + key + " is " + p);
  }
 }
+
+//O(log3N)
