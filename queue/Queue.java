@@ -1,71 +1,81 @@
-package queuepac;
+// Java program to implement a queue using an array 
+class Queue { 
+    private static int front, rear, capacity; 
+    private static int queue[]; 
 
-public class Queue {
-    private int arr[];         // array to store queue elements
-    private int front;         // front points to front element in the queue
-    private int rear;          // rear points to last element in the queue
-    private int capacity;      // maximum capacity of the queue
-    private int count;         // current size of the queue
+    Queue(int c) 
+    { 
+        front = rear = 0; 
+        capacity = c; 
+        queue = new int[capacity]; 
+    } 
 
-    // Constructor to initialize queue
-    Queue(int size) {
-        arr = new int[size];
-        capacity = size;
-        front = 0;
-        rear = -1;
-        count = 0;
-    }
+    // function to insert an element 
+    // at the rear of the queue 
+    static void queueEnqueue(int data) 
+    { 
+        // check queue is full or not 
+        if (capacity == rear) { 
+            System.out.printf("\nQueue is full\n"); 
+            return; 
+        } 
 
-    // Utility function to remove front element from the queue
-    public void dequeue() {
-        // check for queue underflow
-        if (isEmpty()) {
-            System.out.println("UnderFlow\nProgram Terminated");
-            System.exit(1);
-        }
+        // insert element at the rear 
+        else { 
+            queue[rear] = data; 
+            rear++; 
+        } 
+        return; 
+    } 
 
-        System.out.println("Removing " + arr[front]);
+    // function to delete an element 
+    // from the front of the queue 
+    static void queueDequeue() 
+    { 
+        // if queue is empty 
+        if (front == rear) { 
+            System.out.printf("\nQueue is empty\n"); 
+            return; 
+        } 
 
-        front = (front + 1) % capacity;
-        count--;
-    }
+        // shift all the elements from index 2 till rear 
+        // to the right by one 
+        else { 
+            for (int i = 0; i < rear - 1; i++) { 
+                queue[i] = queue[i + 1]; 
+            } 
 
-    // Utility function to add an item to the queue
-    public void enqueue(int item) {
-        // check for queue overflow
-        if (isFull()) {
-            System.out.println("OverFlow\nProgram Terminated");
-            System.exit(1);
-        }
+            // decrement rear 
+            rear--; 
+        } 
+        return; 
+    } 
 
-        System.out.println("Inserting " + item);
+    // print queue elements 
+    static void queueDisplay() 
+    { 
+        int i; 
+        if (front == rear) { 
+            System.out.printf("\nQueue is Empty\n"); 
+            return; 
+        } 
 
-        rear = (rear + 1) % capacity;
-        arr[rear] = item;
-        count++;
-    }
+        // traverse front to rear and print elements 
+        for (i = front; i < rear; i++) { 
+            System.out.printf(" %d <-- ", queue[i]); 
+        } 
+        return; 
+    } 
 
-    // Utility function to return front element in the queue
-    public int peek() {
-        if (isEmpty()) {
-            System.out.println("UnderFlow\nProgram Terminated");
-            System.exit(1);
-        }
-        return arr[front];
-    }
+    // print front of queue 
+    static void queueFront() 
+    { 
+        if (front == rear) { 
+            System.out.printf("\nQueue is Empty\n"); 
+            return; 
+        } 
+        System.out.printf("\nFront Element is: %d", queue[front]); 
+        return; 
+    } 
+} 
 
-    // Utility function to return the size of the queue
-    public int size() {
-        return count;
-    }
-
-    // Utility function to check if the queue is empty or not
-    public Boolean isEmpty() {
-        return (size() == 0);
-    }
-
-    // Utility function to check if the queue is empty or not
-    public Boolean isFull() {
-        return (size() == capacity);
-    }
-}

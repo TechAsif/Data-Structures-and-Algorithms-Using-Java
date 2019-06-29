@@ -1,27 +1,37 @@
-package queuepac;
-
-public class MainClass {
-
-    public static void main(String[] args) {
-        // create a queue of capacity 5
-        Queue q = new Queue(5);
-
-        q.enqueue(1);
-        q.enqueue(2);
-        q.enqueue(3);
-
-        System.out.println("Front element is: " + q.peek());
-        q.dequeue();
-        System.out.println("Front element is: " + q.peek());
-
-        System.out.println("Queue size is " + q.size());
-
-        q.dequeue();
-        q.dequeue();
-
-        if (q.isEmpty())
-            System.out.println("Queue Is Empty");
-        else
-            System.out.println("Queue Is Not Empty");
-    }
-}
+public class MainClass { 
+  
+    // Driver code 
+    public static void main(String[] args) 
+    { 
+        // Create a queue of capacity 4 
+        Queue q = new Queue(4); 
+  
+        // print Queue elements 
+        q.queueDisplay(); 
+  
+        // inserting elements in the queue 
+        q.queueEnqueue(20); 
+        q.queueEnqueue(30); 
+        q.queueEnqueue(40); 
+        q.queueEnqueue(50); 
+  
+        // print Queue elements 
+        q.queueDisplay(); 
+  
+        // insert element in the queue 
+        q.queueEnqueue(60); 
+  
+        // print Queue elements 
+        q.queueDisplay(); 
+  
+        q.queueDequeue(); 
+        q.queueDequeue(); 
+        System.out.printf("\n\nafter two node deletion\n\n"); 
+  
+        // print Queue elements 
+        q.queueDisplay(); 
+  
+        // print front of the queue 
+        q.queueFront(); 
+    } 
+} 

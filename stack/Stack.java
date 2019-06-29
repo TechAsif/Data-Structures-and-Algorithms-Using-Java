@@ -2,8 +2,12 @@ package stackpac;
 /* Ata kintu dynamic na static*/
 public class Stack {
 
-    int stack[] = new int[10];//dynamic o korte parbo
-    int top = 0;
+        int stack[];//dynamic o korte parbo
+        int top;
+        public Stack() {
+            stack = new int[10];//dynamic o korte parbo
+            top = 0;
+        }
 
     public void push(int data){
         if(top == 10)
