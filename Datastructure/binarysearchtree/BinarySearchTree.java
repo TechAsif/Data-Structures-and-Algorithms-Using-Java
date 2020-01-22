@@ -1,89 +1,103 @@
-package binarysearchtree;
+package com.company;
 
 class BinaryTree {
 
     Node root;
 
-    public void insert(int value) {
+    // This method mainly calls insertRec() 
+    void insert(int value) {
+        root = insertRec(root, value);
+    }
 
-        Node newNode = new Node(value);
+    /* A recursive function to insert a new value in BST */
+    Node insertRec(Node root, int value) {
 
+        /* If the tree is empty, return a new node */
         if (root == null) {
-
-            root = newNode;
-
-        } else {
-
-            Node focusNode = root;
-            Node parent;
-
-            while (true) {
-                parent = focusNode;
-
-                if (value < focusNode.value) {
-                    focusNode = focusNode.leftChild;
-                    if (focusNode == null) {
-                        parent.leftChild = newNode;
-                        return; // All Done
-                    }
-
-                } else {
-                    focusNode = focusNode.rightChild;
-                    if (focusNode == null) {
-                        parent.rightChild = newNode;
-                        return; // All Done
-
-                    }
-
-                }
-
-            }
+            root = new Node(value);
+            return root;
         }
 
+        /* Otherwise, recur down the tree */
+        if (value < root.value)
+            root.leftChild = insertRec(root.leftChild, value);
+        else if (value > root.value)
+            root.rightChild = insertRec(root.rightChild, value);
+
+        /* return the (unchanged) node pointer */
+        return root;
     }
 
-    public void inOrderTraverseTree(Node focusNode) {
 
-        if (focusNode != null) {
-            inOrderTraverseTree(focusNode.leftChild);
-            System.out.println(focusNode.value);
-            inOrderTraverseTree(focusNode.rightChild);
-        }
+
+    /* Given a binary tree, print its nodes in preorder*/
+    void printPreorder(Node node)
+    {
+        if (node == null)
+            return;
+
+        /* first print data of node */
+        System.out.print(node.value + " ");
+
+        /* then recur on left sutree */
+        printPreorder(node.leftChild);
+
+        /* now recur on right subtree */
+        printPreorder(node.rightChild);
     }
 
-    public void preorderTraverseTree(Node focusNode) {
+    /* Given a binary tree, print its nodes in inorder*/
+    void printInorder(Node node)
+    {
+        if (node == null)
+            return;
 
-        if (focusNode != null) {
-            System.out.println(focusNode);
-            preorderTraverseTree(focusNode.leftChild);
-            preorderTraverseTree(focusNode.rightChild);
-        }
+        /* first recur on left child */
+        printInorder(node.leftChild);
+
+        /* then print the data of node */
+        System.out.print(node.value + " ");
+
+        /* now recur on right child */
+        printInorder(node.rightChild);
     }
 
-    public void postOrderTraverseTree(Node focusNode) {
+    /* Given a binary tree, print its nodes according to the
+      "bottom-up" postorder traversal. */
+    void printPostorder(Node node)
+    {
+        if (node == null)
+            return;
 
-        if (focusNode != null) {
-            postOrderTraverseTree(focusNode.leftChild);
-            postOrderTraverseTree(focusNode.rightChild);
-            System.out.println(focusNode);
-        }
+        // first recur on left subtree
+        printPostorder(node.leftChild);
+
+        // then recur on right subtree
+        printPostorder(node.rightChild);
+
+        // now deal with the node
+        System.out.print(node.value + " ");
     }
 
-    public Node findNode(int value) {
-        Node focusNode = root;
-        while (focusNode.value != value) {
-            if (value < focusNode.value) {
-                focusNode = focusNode.leftChild;
+    // This method mainly calls SearchRec()
 
-            } else {
-                focusNode = focusNode.rightChild;
-            }
+    public Node search(int key){
+        return searchRec(root,key);
+    }
 
-            if (focusNode == null)
-                return null;
-        }
 
-        return focusNode;
+    // A utility function to search a given key in BST
+    public Node searchRec(Node root, int key)
+    {
+        // Base Cases: root is null or key is present at root
+        if (root==null || root.value==key)
+            return root;
 
+        // val is greater than root's key
+        if (root.value > key)
+            return searchRec(root.leftChild, key);
+
+        // val is less than root's key
+        return searchRec(root.rightChild, key);
     }
 }

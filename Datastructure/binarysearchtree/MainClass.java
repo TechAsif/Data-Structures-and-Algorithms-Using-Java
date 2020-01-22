@@ -1,4 +1,4 @@
-package binarysearchtree;
+package com.company;
 
 public class MainClass {
 
@@ -21,14 +21,16 @@ public class MainClass {
         theTree.insert(16);
         theTree.insert(23);
 
-        theTree.inOrderTraverseTree(theTree.root);
 
-        Node findSpecificNode = theTree.findNode(1);
+        theTree.printInorder(theTree.root);
+
+        Node findSpecificNode = theTree.search(1);
         if (findSpecificNode != null) {
             System.out.println("The value is found");
         } else {
             System.out.println("The value is not found");
         }
+
     }
 
 }

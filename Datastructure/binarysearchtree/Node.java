@@ -1,4 +1,4 @@
-package binarysearchtree;
+package com.company;
 
 class Node {
 
@@ -9,5 +9,6 @@ class Node {
     Node(int value) {
 
         this.value = value;
+        leftChild=rightChild=null;
     }
 }
